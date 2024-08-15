@@ -21,6 +21,16 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public boolean userExists(long userNumber) {
+        Optional<UserModel> user = userRepository.getByUserNumber(userNumber);
+        return user.isPresent();
+    }
+
+    public String getEmailByNumber(long mobileNumber) {
+        UserModel user=  userRepository.getByUserNumber(mobileNumber).orElse(null);
+        return user.getUser_Email();
+    }
+
 
 
 }
