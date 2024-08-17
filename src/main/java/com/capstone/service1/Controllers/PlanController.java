@@ -3,10 +3,7 @@ package com.capstone.service1.Controllers;
 import com.capstone.service1.Models.PlanModel;
 import com.capstone.service1.Models.ValidRecharges;
 import com.capstone.service1.Repositary.ValidRechargesRepo;
-import com.capstone.service1.Services.PlanService;
-import com.capstone.service1.Services.RechargeSuccessEmail;
-import com.capstone.service1.Services.UserService;
-import com.capstone.service1.Services.ValidRechargesService;
+import com.capstone.service1.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +29,8 @@ public class PlanController {
     @Autowired
     RechargeSuccessEmail rechargeSuccessEmail;
 
+
+
     @Autowired
     private UserService user_Service;
 
@@ -52,9 +51,13 @@ public class PlanController {
 
     @PostMapping("/payment/sucess")
     public boolean paymentSucess(@RequestBody Map<String,Object> data) {
+        System.out.println("paymentSucess");
 
         int planId = (int)data.get("planId");
-        long mobileNumber = (long)data.get("mobileNumber");
+        long mobileNumber = ((Number) data.get("mobileNumber")).longValue();
+
+
+//        long mobileNumber = (long)data.get("mobileNumber");
 
         //getting email of the user
         String user_Email=userService.getEmailByNumber(mobileNumber);
@@ -90,6 +93,9 @@ public class PlanController {
         System.out.println(userNumber);
         return validRechargesService.getActivePlans(userNumber);
     }
+
+
+
 
 
 
