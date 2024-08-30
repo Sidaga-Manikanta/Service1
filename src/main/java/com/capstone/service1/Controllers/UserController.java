@@ -38,7 +38,7 @@ public class UserController {
     public long getCurrentUserI(HttpServletRequest request) {
 
         HttpSession session = request.getSession(false);
-        session.getAttribute("user");
+
         if (session != null) {
             currentUser = (long) session.getAttribute("user");
             return currentUser;

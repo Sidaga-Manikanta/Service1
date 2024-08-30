@@ -1,4 +1,4 @@
-package com.capstone.service1;
+package com.capstone.service1.Configurations;
 
 
 import org.springframework.context.annotation.Bean;
